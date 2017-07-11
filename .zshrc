@@ -98,4 +98,5 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# a checkout of this: https://github.com/seebi/dircolors-solarized.git
 eval `dircolors /home/oskar/Downloads/dircolors/dircolors.256dark`
