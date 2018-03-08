@@ -11,6 +11,8 @@
     alias = config --get-regexp ^alias\\.
     co = checkout
     b = checkout -b
+    bd = branch -d
+    bdf = branch -D
     up = "!f() { echo 'Fetch & Pull' && git fetch --tags && git pull; }; f"
     #DEZE NOG KEER FIXEN t = "!f() { git tag | xargs -I@ git log --format=format:\"%ai @%n (%Cblue[%an]%Creset)\" -1 @ | sort | awk '{print $4}'; }; f#"
     t = log --tags --simplify-by-decoration --pretty=format:'%Cred%d%Creset - %ai (%Cblue[%an]%Creset)' -n30
@@ -24,7 +26,7 @@
 [core]
 	autocrlf = input
 	filemode = false
-    excludesfile = /home/oskar/.gitignore
+    excludesfile = /Users/oskarvanvelden/dotfiles/.gitignore-defaults
 [push]
     followTags = 1
     default = current
