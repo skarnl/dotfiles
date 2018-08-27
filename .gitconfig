@@ -22,6 +22,7 @@
     delgone = "!f() { git branch -vvv | grep gone | awk '{print $1}' | xargs git branch -d; }; f"
     delgonef = "!f() { git branch -vvv | grep gone | awk '{print $1}' | xargs git branch -D; }; f"
     mergeff = merge --ff
+    recent = for-each-ref --count=10 --sort=-committerdate refs/heads/ --format="%(refname:short)"
  
 [core]
 	autocrlf = input
@@ -44,3 +45,5 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[rerere]
+        enabled = true
