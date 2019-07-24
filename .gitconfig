@@ -13,6 +13,7 @@
     b = checkout -b
     bd = branch -d
     bdf = branch -D
+    bv = branch -vvv
     up = "!f() { echo 'Fetch & Pull' && git fetch --tags && git pull; }; f"
     #DEZE NOG KEER FIXEN t = "!f() { git tag | xargs -I@ git log --format=format:\"%ai @%n (%Cblue[%an]%Creset)\" -1 @ | sort | awk '{print $4}'; }; f#"
     t = log --tags --simplify-by-decoration --pretty=format:'%Cred%d%Creset - %ai (%Cblue[%an]%Creset)' -n30
@@ -23,11 +24,12 @@
     delgonef = "!f() { git branch -vvv | grep gone | awk '{print $1}' | xargs git branch -D; }; f"
     mergeff = merge --ff
     recent = for-each-ref --count=10 --sort=-committerdate refs/heads/ --format="%(refname:short)"
- 
+    anwb = 'config user.email "ovanvelden@anwb.nl"'
+    prunetags = "!f() { git tag -l | xargs git tag -d; git fetch -t; }; f"
 [core]
 	autocrlf = input
 	filemode = false
-    excludesfile = /Users/oskarvanvelden/dotfiles/.gitignore-defaults
+    excludesfile = /Users/oskar/dotfiles/.gitignore-defaults
 [push]
     followTags = 1
     default = current
@@ -46,4 +48,4 @@
 	process = git-lfs filter-process
 	required = true
 [rerere]
-        enabled = true
+    enabled = true
