@@ -1,3 +1,5 @@
+# This is Git's per-user configuration file.
+[include]
 [user]
 	name = Oskar van Velden
 	email = oskar@rakso.nl
@@ -33,7 +35,6 @@
 [push]
     followTags = 1
     default = current
-
 [tag]
 	sort = version:refname
 [pull]
