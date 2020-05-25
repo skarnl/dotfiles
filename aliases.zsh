@@ -4,9 +4,6 @@
 #umask 0002
 
 #ALIASSES
-alias p='pstorm .'
+alias l='ls -als'
+alias w='webstorm .'
 alias c='code -n .'
-
-alias ntc='name-that-color'
-
-alias art='php artisan'

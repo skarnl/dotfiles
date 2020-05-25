@@ -13,6 +13,7 @@
     alias = config --get-regexp ^alias\\.
     co = checkout
     b = checkout -b
+    bm = branch -m
     bd = branch -d
     bdf = branch -D
     bv = branch -vvv
@@ -26,8 +27,8 @@
     delgonef = "!f() { git branch -vvv | grep gone | awk '{print $1}' | xargs git branch -D; }; f"
     mergeff = merge --ff
     recent = for-each-ref --count=10 --sort=-committerdate refs/heads/ --format="%(refname:short)"
-    anwb = 'config user.email "ovanvelden@anwb.nl"'
     prunetags = "!f() { git tag -l | xargs git tag -d; git fetch -t; }; f"
+    undo = reset HEAD^
 [core]
 	autocrlf = input
 	filemode = false
