@@ -12,27 +12,30 @@
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %Cblue[%an]%Creset' --abbrev-commit --date=relative
     alias = config --get-regexp ^alias\\.
     co = checkout
+    ca = commit --amend
+    cp = cherry-pick
     b = checkout -b
     bm = branch -m
     bd = branch -d
     bdf = branch -D
     bv = branch -vvv
     up = "!f() { echo 'Fetch & Pull' && git fetch --tags && git pull; }; f"
-    #DEZE NOG KEER FIXEN t = "!f() { git tag | xargs -I@ git log --format=format:\"%ai @%n (%Cblue[%an]%Creset)\" -1 @ | sort | awk '{print $4}'; }; f#"
     t = log --tags --simplify-by-decoration --pretty=format:'%Cred%d%Creset - %ai (%Cblue[%an]%Creset)' -n30
     edit = config --edit --global
-    delmerged = "!f() { git branch --merged | grep -v \"^*\" | awk '{print $NF}' | xargs git branch -d; }; f"
-    pushf = push --force-with-lease
+    p = push -u
+    pf = push -u --force-with-lease
     delgone = "!f() { git branch -vvv | grep gone | awk '{print $1}' | xargs git branch -d; }; f"
     delgonef = "!f() { git branch -vvv | grep gone | awk '{print $1}' | xargs git branch -D; }; f"
+    delmerged = "!f() { git branch --merged | grep -v \"^*\" | awk '{print $NF}' | xargs git branch -d; }; f"
     mergeff = merge --ff
     recent = for-each-ref --count=10 --sort=-committerdate refs/heads/ --format="%(refname:short)"
     prunetags = "!f() { git tag -l | xargs git tag -d; git fetch -t; }; f"
     undo = reset HEAD^
+    wip = "!f() { git add . && git commit -m'WIP' --no-verify; }; f"
 [core]
 	autocrlf = input
 	filemode = false
-    excludesfile = /Users/oskar/dotfiles/.gitignore-defaults
+    excludesfile = ~/.gitignore-defaults
 [push]
     followTags = 1
     default = current
@@ -42,8 +45,6 @@
     rebase = true
 [rebase]
     autostash = true
-[remote "origin"]
-	prune = true
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -51,3 +52,7 @@
 	required = true
 [rerere]
     enabled = true
+[init]
+    defaultBranch = main
+[fetch]
+	prune = true
