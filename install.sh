@@ -2,6 +2,9 @@
 # SETUP #
 #########
 
+# Disable Notification Center and remove the menu bar icon
+launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2> /dev/null
+
 #### DOCK ####
 # Wipe all (default) app icons from the Dock
 defaults write com.apple.dock persistent-apps -array
