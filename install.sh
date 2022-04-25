@@ -45,8 +45,14 @@ xcode-select --install
 
 echo 'PATH="/usr/local/bin:$PATH"' >> ~/.bash_profile
 
-# CLI
+# GIT
+brew install git
+
+# NVM
 brew install nvm
+
+mkdir ~/.nvm
+
 brew install yarn
 brew install fzf
 brew install pyenv
@@ -54,14 +60,14 @@ brew install pyenv
 pyenv install 3.9.2
 
 # Applications
-brew cask install google-chrome
-brew cask install homebrew/cask-versions/firefox-developer-edition
+# brew install --cask google-chrome
+brew install --cask homebrew/cask-versions/firefox-developer-edition
 brew install --cask webstorm
 brew install --cask slack
-brew cask install alfred
-brew cask install microsoft-teams
-brew cask install discord
-brew cask install iterm2
+brew install --cask alfred
+brew install --cask microsoft-teams
+brew install --cask discord
+brew install --cask iterm2
 brew install --cask stretchly
 brew install --cask firefox
 brew install --cask pycharm-ce
@@ -73,16 +79,19 @@ brew install --cask toggl-track
 brew install --cask visual-studio-code
 
 # ZSH
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-ln -fsv $PWD/zsh/zshrc $HOME/.zshrc
+brew install zsh
 
 # Prezto
 git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 
+# link all config files
 setopt EXTENDED_GLOB
 for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
   ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
 done
+
+# setup prompt theme
+ln -fsv $PWD/prezto/prompt_skar_setup "${ZDOTDIR:-$HOME}/.zprezto/modules/prompt/functions/prompt_skar_setup"
 
 # make ZSH the default shell
 chsh -s /bin/zsh
