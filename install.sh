@@ -63,8 +63,7 @@ pyenv install 3.9.2
 
 # Applications
 # brew install --cask google-chrome
-brew install --cask homebrew/cask-versions/firefox-developer-edition
-brew install --cask webstorm
+brew install --cask brave-browser
 brew install --cask slack
 brew install --cask alfred
 brew install --cask microsoft-teams
@@ -72,6 +71,7 @@ brew install --cask discord
 brew install --cask iterm2
 brew install --cask stretchly
 brew install --cask firefox
+brew install --cask phpstorm
 brew install --cask pycharm-ce
 brew install --cask dropbox
 brew install --cask spotify
