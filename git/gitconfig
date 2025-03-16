@@ -32,10 +32,14 @@
     prunetags = "!f() { git tag -l | xargs git tag -d; git fetch -t; }; f"
     undo = reset HEAD^
     wip = "!f() { git add . && git commit -m'WIP' --no-verify; }; f"
+    
+    # git track branch-name (to track with origin)
+    track = "!f() { git branch --set-upstream-to=origin/$1 $1; }; f"
+        
 [core]
 	autocrlf = input
 	filemode = false
-    excludesfile = ~/.gitignore-defaults
+	excludesfile = /Users/skar/.gitignore-defaults
 [push]
     followTags = 1
     default = current
@@ -56,3 +60,13 @@
     defaultBranch = main
 [fetch]
 	prune = true
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate

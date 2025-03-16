@@ -12,8 +12,10 @@ defaults write com.apple.dock persistent-apps -array
 # Show only open applications in the Dock
 defaults write com.apple.dock static-only -bool true
 
-defaults write com.apple.Dock contents-immutable -bool yes;
-defaults write com.apple.Dock position-immutable -bool yes;
+defaults write com.apple.dock contents-immutable -bool yes;
+defaults write com.apple.dock position-immutable -bool yes;
+
+defaults write com.apple.dock autohide-delay -float 0.0;
 
 killall Dock;
 

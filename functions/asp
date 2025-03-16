@@ -1,0 +1,25 @@
+#function to list profiles
+asp () {
+  verbose=""
+  if [ "$1" = "-v" ] ; then
+    verbose="$1"
+    shift 1
+  fi
+  if [ -z "$1" ]
+  then
+    if [ "$AWS_PROFILE" != "$AWS_DEFAULT_PROFILE" ] ; then
+      echo "WARN: \$AWS_PROFILE is different than \$AWS_DEFAULT_PROFILE"
+      grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn} -e "\\[profile" -e "\\[default" ~/.aws/config | sed "s/\\[profile //" | sed "s/\\[//" | sed "s/\\]//" | sort | sed "s/^$AWS_DEFAULT_PROFILE\$/$AWS_DEFAULT_PROFILE (set by \$AWS_DEFAULT_PROFILE)/" | sed -E "s/^$AWS_PROFILE(\s|\$)/* $AWS_PROFILE\1 (set by \$AWS_PROFILE)/" | sed "s/^\w/  &/"
+    else
+      grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn} -e "\\[profile" -e "\\[default" ~/.aws/config | sed "s/\\[profile //" | sed "s/\\[//" | sed "s/\\]//" | sort | sed "s/^$AWS_DEFAULT_PROFILE\$/$AWS_DEFAULT_PROFILE (set by \$AWS_DEFAULT_PROFILE and \$AWS_PROFILE)/" | sed -E "s/^$AWS_PROFILE(\s|\$)/* $AWS_PROFILE\1/" | sed "s/^\w/  &/"
+    fi
+  else
+    [ -n "$verbose" ] && set -x
+    export AWS_DEFAULT_PROFILE=$1
+    export AWS_PROFILE=$1
+    export AWS_SDK_LOAD_CONFIG=1
+    export AWS_PAGER=""
+    aws s3 ls
+    { [ -n "$verbose" ] && set +x ; } 2>/dev/null
+  fi
+}
